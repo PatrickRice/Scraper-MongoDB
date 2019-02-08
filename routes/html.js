@@ -50,3 +50,8 @@ module.exports = function(app) {
     res.render("404");
   });
 };
+
+app.get("/", function(req, res) {
+    res.json(path.join(__dirname, "public/index.html"));
+  });
+  
