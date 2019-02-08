@@ -14,7 +14,7 @@ $(document).on("click", "#scrape", function() {
     // For each one
     for (var i = 0; i < data.length; i++) {
       // Display the apropos information on the page
-      $(".article-container").append("<div class = 'card pl-5 py-3' data-id='" + data[i]._id + "'><img src='"+data[i].image+"' class = 'float-none' style='width:192px;height:123px;'><br /><h3><a class='article-link' href='" + data[i].link + "'" + data[i].title + "'</h3><br />" + data[i].title + "</a><br><br><p>"+data[i].summary+"</p><a class='btn btn-primary save float-none' id='" + data[i]._id + "'>Save Article</a></div>");
+      $(".article-container").append("<div class = 'card pl-5 py-3' data-id='" + data[i]._id + "'><img src='"+data[i].image+"' class = 'float-none' style='width:192px;height:123px;'><h3><a class='article-link' href='" + data[i].link + "'" + data[i].title + "'</h3><br />" + data[i].title + "</a><br /><p><h5>"+data[i].summary+"<h5></p><p><h4 style='color:MediumSeaGreen;'>Last Update: "+data[i].lastUpdate+"<h4></p><a class='btn btn-primary save float-none' id='" + data[i]._id + "'>Save Article</a></div>");
     }
   }));
   });

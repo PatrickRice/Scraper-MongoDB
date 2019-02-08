@@ -38,7 +38,7 @@ module.exports = {
                 // If a Note was created successfully, find one Article with an `_id` equal to `req.params.id`. Update the Article to be associated with the new Note
                 // { new: true } tells the query that we want it to return the updated User -- it returns the original by default
                 // Since our mongoose query returns a promise, we can chain another `.then` which receives the result of the query
-                return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote._id }, { new: true });
+                return db.Article.findOneAndUpdate({ _id: req.params.id }, { note: dbNote.body }, { new: true });
             })
             .then(function (dbArticle) {
                 // If we were able to successfully update an Article, send it back to the client
@@ -103,18 +103,17 @@ db.Article.create(results)
 console.log(results);
 });
         },
-
-    clearArticles: function (req, res){
-        db.Article.remove({})
-        .then(function (dbArticle) {
-            // If we were able to successfully find Articles, send them back to the client
-            res.json(dbArticle);
-        })
-        .catch(function (err) {
-            // If an error occurred, send it to the client
-            res.json(err);
-        })
-    },
+        clearArticles: function (req, res){
+            db.Article.remove({})
+            .then(function (dbArticle) {
+                // If we were able to successfully find Articles, send them back to the client
+                res.json(dbArticle);
+            })
+            .catch(function (err) {
+                // If an error occurred, send it to the client
+                res.json(err);
+            })
+        },
     saveArticle: function (req, res){
         db.Article.findOneAndUpdate({ _id: req.params.id }, { $set: { isSaved: true }})
             .then(function (dbArticle) {
@@ -139,6 +138,17 @@ console.log(results);
         },
     unsaveArticle: function (req, res){
         db.Article.findOneAndUpdate({ _id: req.params.id }, { $set: { isSaved: false }})
+            .then(function (dbArticle) {
+                // If we were able to successfully update an Article, send it back to the client
+                res.json(dbArticle);
+            })
+            .catch(function (err) {
+                // If an error occurred, send it to the client
+                res.json(err);
+            })
+        },
+    unsaveAllArticles: function (req, res){
+        db.Article.updateMany({ isSaved: true }, { $set: { isSaved: false }})
             .then(function (dbArticle) {
                 // If we were able to successfully update an Article, send it back to the client
                 res.json(dbArticle);

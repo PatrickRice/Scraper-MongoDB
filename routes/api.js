@@ -10,5 +10,6 @@ router.put("/articles/:id", articleController.saveArticle);
 router.get("/saved", articleController.showSavedArticles);
 router.get("/notes", articleController.showSavedArticles);
 router.put("/unsave/:id", articleController.unsaveArticle);
+router.put("/unsave", articleController.unsaveAllArticles);
 
 module.exports = router;
