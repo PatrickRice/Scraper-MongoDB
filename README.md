@@ -18,4 +18,9 @@ Application Flow:
 
 - If the "Scrape New Articles" button is clicked again on the "Home" page, the Wall Street Journal's (WSJ) "What's News" board is scraped again and the results are rendered to the page, but articles that the user has already saved are not displayed to the Home page.
 
+Technologies Utilized:
+
+- MongoDB, Express, Node.js, Javascript/jQuery, cheerio NPM, mongoose NPM, morgan NPM, HTML 
+
+
 Deployed App Link: https://powerful-mountain-62449.herokuapp.com
